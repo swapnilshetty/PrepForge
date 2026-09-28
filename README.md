@@ -162,8 +162,8 @@ Frontend:
 http://localhost:5173
 🔄 Application Architecture
              ┌────────────────────┐
-             │        React UI    │
-             │      	Vite        │
+             │      React UI      │
+             │       Vite         │
              └───────── ┬─────────┘
                         │
                         │ REST API
