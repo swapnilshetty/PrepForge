@@ -1,0 +1,36 @@
+.heat-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.heat-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+}
+
+.heat-bar-label {
+  color: var(--iron);
+  font-weight: 600;
+}
+
+.heat-bar-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.heat-bar-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--iron-faint);
+  overflow: hidden;
+}
+
+.heat-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 400ms ease, background-color 400ms ease;
+}

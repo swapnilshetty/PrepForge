@@ -1,0 +1,29 @@
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.practice-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.practice-card h3 {
+  margin-bottom: 2px;
+}
+
+.practice-card p {
+  color: var(--iron);
+  font-size: 14px;
+}
+
+.practice-card--disabled {
+  opacity: 0.6;
+}
+
+.practice-card-tag {
+  align-self: flex-start;
+}

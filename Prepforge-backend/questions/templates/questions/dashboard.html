@@ -1,0 +1,252 @@
+{% extends "questions/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="fw-bold mb-1">Dashboard</h1>
+        <p class="text-muted mb-0">
+            Your interview preparation overview.
+        </p>
+    </div>
+
+    <a href="{% url 'add_question' %}" class="btn btn-primary">
+        + Add Question
+    </a>
+</div>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted">Total Questions</div>
+                <div class="stat-number">{{ total_questions }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted">Solved</div>
+                <div class="stat-number text-success">{{ solved_questions }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted">Remaining</div>
+                <div class="stat-number">{{ remaining_questions }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted">Study Streak</div>
+                <div class="stat-number">{{ study_streak }} day{{ study_streak|pluralize }}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted">Total Study Time</div>
+                <h3 class="mt-2">{{ total_study_time }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted">Today's Study Time</div>
+                <h3 class="mt-2">{{ today_study_time }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h4 class="mb-1">Study Session</h4>
+
+                {% if active_session %}
+                    <p class="text-success mb-0">
+                        Session currently active since
+                        {{ active_session.started_at|date:"d M Y, H:i" }}
+                    </p>
+                {% else %}
+                    <p class="text-muted mb-0">
+                        No active study session.
+                    </p>
+                {% endif %}
+            </div>
+
+            {% if active_session %}
+                <form method="POST" action="{% url 'end_study_session' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        End Session
+                    </button>
+                </form>
+            {% else %}
+                <form method="POST" action="{% url 'start_study_session' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                        Start Study Session
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h4>Question Progress</h4>
+
+                <div class="progress mt-3" style="height: 24px;">
+                    <div
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: {{ progress_percentage }}%;"
+                    >
+                        {{ progress_percentage }}%
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col">
+                        <strong>{{ solved_questions }}</strong>
+                        <div class="text-muted">Solved</div>
+                    </div>
+
+                    <div class="col">
+                        <strong>{{ remaining_questions }}</strong>
+                        <div class="text-muted">Remaining</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h4>Questions by Difficulty</h4>
+
+                {% for item in difficulty_counts %}
+                    <div class="d-flex justify-content-between border-bottom py-2">
+                        <span>{{ item.difficulty }}</span>
+                        <strong>{{ item.count }}</strong>
+                    </div>
+                {% empty %}
+                    <p class="text-muted mt-3">No questions yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row g-4 mt-1">
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4>Top Topics</h4>
+
+                {% for item in topic_counts %}
+                    {% if forloop.counter <= 5 %}
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span>{{ item.topic }}</span>
+                            <strong>{{ item.count }}</strong>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <p class="text-muted mt-3">No topics yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4>Recent Questions</h4>
+
+                {% for question in recent_questions %}
+                    <div class="border-bottom py-2">
+                        <a
+                            href="{% url 'question_detail' question.id %}"
+                            class="text-decoration-none"
+                        >
+                            {{ question.title }}
+                        </a>
+
+                        <small class="text-muted d-block">
+                            {{ question.difficulty }} · {{ question.topic }}
+                        </small>
+                    </div>
+                {% empty %}
+                    <p class="text-muted mt-3">No questions yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h4>Recent Study Sessions</h4>
+
+        <div class="list-group list-group-flush mt-3">
+            {% for session in recent_sessions %}
+                <div class="list-group-item px-0">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>
+                                {{ session.started_at|date:"d M Y, H:i" }}
+                            </strong>
+                        </div>
+
+                        <div>
+                            {% if session.ended_at %}
+                                {{ session.duration }}
+                            {% else %}
+                                <span class="badge text-bg-success">
+                                    Active
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-muted mt-3">
+                    No study sessions yet.
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

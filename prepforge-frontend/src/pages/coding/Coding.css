@@ -1,0 +1,987 @@
+/* =========================================================
+   CODING PAGE
+   ========================================================= */
+
+   .coding-page {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     PAGE HEADER
+     ========================================================= */
+  
+  .page-head {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .page-head h1 {
+    margin-bottom: 8px;
+  }
+  
+  .page-head p {
+    margin-bottom: 20px;
+  }
+  
+  
+  /* =========================================================
+     BREADCRUMB
+     ========================================================= */
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  
+    gap: 7px;
+  
+    margin-bottom: 20px;
+  
+    font-size: 14px;
+    color: var(--iron);
+  }
+  
+  .breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  
+    color: var(--iron);
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    color: var(--ink);
+  }
+  
+  
+  /* =========================================================
+     PROBLEM DETAIL HEADER
+     ========================================================= */
+  
+  .problem-detail-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  
+    gap: 24px;
+  
+    width: 100%;
+    max-width: 100%;
+  
+    box-sizing: border-box;
+  
+    margin-bottom: 24px;
+  }
+  
+  .problem-detail-title-row {
+    display: flex;
+    align-items: flex-start;
+  
+    gap: 14px;
+  
+    min-width: 0;
+    max-width: 100%;
+  }
+  
+  .problem-detail-title-row h1 {
+    margin: 0 0 10px;
+  
+    font-size: 28px;
+    line-height: 1.25;
+  
+    overflow-wrap: anywhere;
+  }
+  
+  .problem-detail-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    flex-shrink: 0;
+  
+    width: 46px;
+    height: 46px;
+  
+    border-radius: 8px;
+  
+    background: var(--ink);
+    color: var(--spark);
+  }
+  
+  .problem-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 8px;
+  
+    flex-shrink: 0;
+  
+    text-decoration: none;
+  
+    white-space: nowrap;
+  }
+  
+  
+  /* =========================================================
+     PROBLEM TAGS
+     ========================================================= */
+  
+  .problem-tags {
+    display: flex;
+    align-items: center;
+  
+    flex-wrap: wrap;
+  
+    gap: 8px;
+  }
+  
+  .badge {
+    display: inline-flex;
+    align-items: center;
+  
+    padding: 5px 9px;
+  
+    border-radius: 999px;
+  
+    font-size: 12px;
+    font-weight: 600;
+  
+    line-height: 1;
+  }
+  
+  .badge-outline {
+    background: transparent;
+  
+    border: 1px solid var(--iron-light);
+  
+    color: var(--iron);
+  }
+  
+  
+  /* Difficulty badges */
+  
+  .difficulty-easy {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+  
+  .difficulty-medium {
+    background: #fff4df;
+    color: #a35b00;
+  }
+  
+  .difficulty-hard {
+    background: #fdeaea;
+    color: #b42318;
+  }
+  
+  
+  /* =========================================================
+     MAIN PROBLEM + EDITOR LAYOUT
+     ========================================================= */
+  
+  /*
+     DESKTOP
+  
+     LEFT                         RIGHT
+     ┌───────────────────┐        ┌───────────────────┐
+     │ Problem           │        │ Code Editor       │
+     │                   │        │                   │
+     │ Description       │        │ Language          │
+     │ Input             │        │                   │
+     │ Output            │        │ Code              │
+     │ Constraints       │        │                   │
+     │                   │        │ Run / Submit      │
+     └───────────────────┘        └───────────────────┘
+  */
+  
+  .problem-detail {
+    display: grid;
+  
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  
+    gap: 24px;
+  
+    width: 100%;
+    max-width: 100%;
+  
+    box-sizing: border-box;
+  
+    align-items: start;
+  
+    /*
+       VERY IMPORTANT:
+       Prevent grid content from creating horizontal overflow.
+    */
+    overflow: hidden;
+  }
+  
+  .problem-detail > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     LEFT - PROBLEM SPECIFICATION
+     ========================================================= */
+  
+  .problem-spec {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  
+    padding: 26px;
+  
+    box-sizing: border-box;
+  
+    overflow: hidden;
+  }
+  
+  .problem-section {
+    width: 100%;
+    max-width: 100%;
+  
+    margin-bottom: 28px;
+  
+    box-sizing: border-box;
+  }
+  
+  .problem-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .problem-section h2 {
+    margin: 0 0 12px;
+  
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  
+  .problem-section h3 {
+    margin: 0 0 10px;
+  
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  
+  .problem-section p {
+    width: 100%;
+    max-width: 100%;
+  
+    margin: 0;
+  
+    color: var(--ink-soft);
+  
+    font-size: 15px;
+  
+    line-height: 1.7;
+  
+    overflow-wrap: anywhere;
+  }
+  
+  
+  /* =========================================================
+     CONSTRAINTS
+     ========================================================= */
+  
+  .problem-section pre {
+    display: block;
+  
+    width: 100%;
+    max-width: 100%;
+  
+    margin: 0;
+  
+    padding: 14px 16px;
+  
+    box-sizing: border-box;
+  
+    background: var(--paper);
+  
+    border: 1px solid var(--iron-faint);
+  
+    border-radius: var(--radius-sm);
+  
+    color: var(--ink-soft);
+  
+    font-family:
+      "IBM Plex Mono",
+      "Courier New",
+      monospace;
+  
+    font-size: 13px;
+  
+    line-height: 1.6;
+  
+    white-space: pre-wrap;
+  
+    overflow-x: auto;
+  }
+  
+  
+  /* =========================================================
+     RIGHT - EDITOR PANEL
+     ========================================================= */
+  
+  .editor-panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  
+    box-sizing: border-box;
+  
+    position: sticky;
+  
+    top: 84px;
+  
+    overflow: hidden;
+  }
+  
+  .editor-card {
+    display: flex;
+  
+    flex-direction: column;
+  
+    gap: 14px;
+  
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  
+    padding: 18px;
+  
+    box-sizing: border-box;
+  
+    overflow: hidden;
+  }
+  
+  
+  /* =========================================================
+     EDITOR TOOLBAR
+     ========================================================= */
+  
+  .editor-toolbar {
+    display: flex;
+  
+    align-items: center;
+    justify-content: space-between;
+  
+    gap: 16px;
+  
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  
+    box-sizing: border-box;
+  
+    padding-bottom: 4px;
+  }
+  
+  .editor-language {
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 10px;
+  
+    min-width: 0;
+    max-width: 100%;
+  
+    color: var(--iron);
+  }
+  
+  .editor-language .field {
+    display: flex;
+  
+    flex-direction: row;
+  
+    align-items: center;
+  
+    gap: 10px;
+  
+    min-width: 0;
+  }
+  
+  .editor-language label {
+    margin: 0;
+  
+    white-space: nowrap;
+  
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .editor-toolbar select {
+    width: 140px;
+    min-width: 0;
+    max-width: 100%;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     CODE EDITOR
+     ========================================================= */
+  
+  .code-textarea {
+    display: block;
+  
+    /*
+       These four properties are important for fixing
+       the horizontal overflow.
+    */
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  
+    box-sizing: border-box;
+  
+    min-height: 480px;
+  
+    padding: 18px;
+  
+    resize: vertical;
+  
+    border: 1px solid var(--ink);
+  
+    border-radius: var(--radius);
+  
+    background: var(--ink);
+  
+    color: var(--paper);
+  
+    font-family:
+      "IBM Plex Mono",
+      "Courier New",
+      monospace;
+  
+    font-size: 13px;
+  
+    line-height: 1.65;
+  
+    tab-size: 4;
+  
+    /*
+       Prevent long code lines from expanding
+       the page.
+    */
+    overflow-x: auto;
+    overflow-y: auto;
+  
+    white-space: pre;
+  
+    flex: 0 1 auto;
+  }
+  
+  .code-textarea:focus {
+    outline: 2px solid var(--ember);
+  
+    outline-offset: 1px;
+  }
+  
+  .code-textarea::placeholder {
+    color: var(--iron-light);
+  }
+  
+  
+  /* =========================================================
+     EDITOR ACTIONS
+     ========================================================= */
+  
+  .editor-actions {
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 10px;
+  
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  
+    box-sizing: border-box;
+  }
+  
+  .editor-actions .btn {
+    min-width: 120px;
+  
+    display: inline-flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    gap: 8px;
+  }
+  
+  .editor-actions .btn:disabled {
+    opacity: 0.65;
+  
+    cursor: not-allowed;
+  }
+  
+  
+  /* =========================================================
+     EDITOR NOTE
+     ========================================================= */
+  
+  .editor-note {
+    display: flex;
+  
+    align-items: flex-start;
+  
+    gap: 9px;
+  
+    width: 100%;
+    max-width: 100%;
+  
+    margin: 0;
+  
+    padding: 12px 14px;
+  
+    box-sizing: border-box;
+  
+    background: var(--paper);
+  
+    border: 1px dashed var(--iron-light);
+  
+    border-radius: var(--radius-sm);
+  
+    color: var(--iron);
+  
+    font-size: 13px;
+  
+    line-height: 1.5;
+  
+    overflow-wrap: anywhere;
+  }
+  
+  .editor-note svg {
+    flex-shrink: 0;
+  
+    margin-top: 2px;
+  }
+  
+  
+  /* =========================================================
+     CODING LIST
+     ========================================================= */
+  
+  .coding-filters {
+    display: flex;
+  
+    flex-wrap: wrap;
+  
+    align-items: flex-end;
+  
+    gap: 14px;
+  
+    width: 100%;
+    max-width: 100%;
+  
+    margin-bottom: 24px;
+  }
+  
+  .coding-filters .field {
+    min-width: 180px;
+    max-width: 100%;
+  }
+  
+  
+  /* =========================================================
+     PROBLEM GRID
+     ========================================================= */
+  
+  .problem-grid {
+    display: grid;
+  
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  
+    gap: 18px;
+  
+    width: 100%;
+    max-width: 100%;
+  
+    box-sizing: border-box;
+  
+    overflow: hidden;
+  }
+  
+  .problem-card {
+    display: flex;
+  
+    flex-direction: column;
+  
+    min-width: 0;
+    max-width: 100%;
+  
+    padding: 20px;
+  
+    box-sizing: border-box;
+  
+    text-decoration: none;
+  
+    transition:
+      transform 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  
+  .problem-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .problem-card-top {
+    display: flex;
+  
+    align-items: center;
+    justify-content: space-between;
+  
+    gap: 12px;
+  
+    margin-bottom: 18px;
+  }
+  
+  .problem-card-icon {
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    width: 38px;
+    height: 38px;
+  
+    flex-shrink: 0;
+  
+    border-radius: 8px;
+  
+    background: var(--ink);
+  
+    color: var(--spark);
+  }
+  
+  .problem-card-number {
+    font-family:
+      "IBM Plex Mono",
+      "Courier New",
+      monospace;
+  
+    font-size: 12px;
+  
+    color: var(--iron);
+  }
+  
+  .problem-card h3 {
+    margin: 0 0 8px;
+  
+    color: var(--ink);
+  
+    font-size: 17px;
+  
+    line-height: 1.4;
+  
+    overflow-wrap: anywhere;
+  }
+  
+  .problem-card-topic {
+    margin: 0 0 16px;
+  
+    color: var(--iron);
+  
+    font-size: 13px;
+  }
+  
+  .problem-card-bottom {
+    display: flex;
+  
+    align-items: center;
+    justify-content: space-between;
+  
+    gap: 12px;
+  
+    margin-top: auto;
+  }
+  
+  .problem-card-arrow {
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    color: var(--iron);
+  }
+  
+  
+  /* =========================================================
+     SEARCH
+     ========================================================= */
+  
+  .coding-search {
+    position: relative;
+  
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .coding-search input {
+    width: 100%;
+    max-width: 100%;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     EMPTY STATE
+     ========================================================= */
+  
+  .empty-state {
+    padding: 40px;
+  
+    text-align: center;
+  }
+  
+  .empty-state p {
+    margin: 0;
+  
+    color: var(--iron);
+  }
+  
+  
+  /* =========================================================
+     TABLET
+     ========================================================= */
+  
+  @media (max-width: 1100px) {
+  
+    .problem-grid {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  
+  /* =========================================================
+     SMALL DESKTOP / TABLET
+     ========================================================= */
+  
+  @media (max-width: 850px) {
+  
+    .problem-detail-header {
+      gap: 18px;
+    }
+  
+    .problem-detail-title-row h1 {
+      font-size: 25px;
+    }
+  
+    .problem-spec {
+      padding: 22px;
+    }
+  
+    .editor-card {
+      padding: 16px;
+    }
+  
+    .code-textarea {
+      min-height: 420px;
+    }
+  }
+  
+  
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+  
+  @media (max-width: 750px) {
+  
+    /*
+       On mobile only:
+       Problem
+          ↓
+       Editor
+    */
+  
+    .problem-detail {
+      grid-template-columns: 1fr;
+  
+      overflow: visible;
+    }
+  
+    .editor-panel {
+      position: static;
+  
+      overflow: visible;
+    }
+  
+    .problem-detail-header {
+      flex-direction: column;
+  
+      align-items: flex-start;
+    }
+  
+    .problem-back-button {
+      align-self: flex-start;
+    }
+  
+    .problem-detail-title-row {
+      width: 100%;
+    }
+  
+    .problem-detail-title-row h1 {
+      font-size: 24px;
+    }
+  
+    .problem-spec {
+      padding: 20px;
+    }
+  
+    .editor-card {
+      padding: 14px;
+  
+      overflow: hidden;
+    }
+  
+    .editor-language .field {
+      flex-direction: row;
+  
+      align-items: center;
+    }
+  
+    .editor-toolbar select {
+      width: 140px;
+  
+      min-width: 0;
+    }
+  
+    .code-textarea {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+  
+      min-height: 380px;
+    }
+  
+    .editor-actions {
+      flex-direction: row;
+    }
+  
+    .editor-actions .btn {
+      width: auto;
+    }
+  
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
+  /* =========================================================
+     SMALL MOBILE
+     ========================================================= */
+  
+  @media (max-width: 500px) {
+  
+    .problem-detail-title-row {
+      gap: 10px;
+    }
+  
+    .problem-detail-icon {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .problem-detail-title-row h1 {
+      font-size: 21px;
+    }
+  
+    .problem-tags {
+      gap: 6px;
+    }
+  
+    .problem-spec {
+      padding: 18px;
+    }
+  
+    .problem-section {
+      margin-bottom: 24px;
+    }
+  
+    .problem-section h2 {
+      font-size: 19px;
+    }
+  
+    .editor-toolbar {
+      align-items: flex-start;
+    }
+  
+    .editor-language {
+      width: 100%;
+    }
+  
+    .editor-language .field {
+      flex: 1;
+    }
+  
+    .editor-toolbar select {
+      flex: 1;
+  
+      width: auto;
+  
+      min-width: 0;
+    }
+  
+    .code-textarea {
+      min-height: 330px;
+  
+      padding: 14px;
+  
+      font-size: 12px;
+    }
+  
+    .editor-actions {
+      flex-direction: column;
+  
+      align-items: stretch;
+    }
+  
+    .editor-actions .btn {
+      width: 100%;
+    }
+  }
+  
+  
+  /* =========================================================
+     VERY SMALL MOBILE
+     ========================================================= */
+  
+  @media (max-width: 360px) {
+  
+    .problem-detail-title-row h1 {
+      font-size: 19px;
+    }
+  
+    .problem-detail-icon {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .editor-card {
+      padding: 12px;
+    }
+  
+    .code-textarea {
+      min-height: 300px;
+    }
+  }

@@ -1,0 +1,111 @@
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-brand {
+  padding: 20px 20px 18px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  overflow-y: auto;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: rgba(246, 244, 239, 0.68);
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+
+.sidebar-link:hover {
+  color: var(--paper);
+  text-decoration: none;
+  background: rgba(246, 244, 239, 0.06);
+}
+
+.sidebar-link.active {
+  color: var(--paper);
+}
+
+/* The active state is a small ember tick on the left edge rather than a
+   full highlighted pill — quieter, and it reads as a status light. */
+.sidebar-link.active::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: var(--ember);
+  border-radius: 0 2px 2px 0;
+}
+
+.sidebar-link svg {
+  flex-shrink: 0;
+}
+
+.sidebar-foot {
+  padding: 12px;
+  border-top: 1px solid rgba(246, 244, 239, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform 200ms ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(27, 24, 21, 0.4);
+    z-index: 30;
+  }
+}
+
+.sidebar-logout {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar-logout:hover {
+  color: #ef4444;
+}

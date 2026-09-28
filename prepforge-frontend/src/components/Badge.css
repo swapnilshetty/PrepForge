@@ -1,0 +1,50 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.badge-easy {
+  background: rgba(47, 93, 98, 0.1);
+  color: var(--temper-dark);
+  border-color: rgba(47, 93, 98, 0.25);
+}
+
+.badge-medium {
+  background: rgba(242, 169, 60, 0.16);
+  color: #8a5c14;
+  border-color: rgba(242, 169, 60, 0.4);
+}
+
+.badge-hard {
+  background: rgba(225, 83, 31, 0.12);
+  color: var(--ember-dark);
+  border-color: rgba(225, 83, 31, 0.3);
+}
+
+.badge-neutral {
+  background: var(--iron-faint);
+  color: var(--iron);
+}
+
+.badge-solved {
+  background: rgba(47, 93, 98, 0.1);
+  color: var(--temper-dark);
+}
+
+.badge-attempted {
+  background: rgba(242, 169, 60, 0.16);
+  color: #8a5c14;
+}
+
+.badge-unattempted {
+  background: var(--iron-faint);
+  color: var(--iron);
+}
