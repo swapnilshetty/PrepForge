@@ -162,29 +162,29 @@ Frontend:
 http://localhost:5173
 🔄 Application Architecture
              ┌────────────────────┐
-             │         React UI         │
-             │      	Vite            │
+             │        React UI    │
+             │      	Vite        │
              └───────── ┬─────────┘
-                           │
-                           │ REST API
-                           ▼
+                        │
+                        │ REST API
+                        ▼
              ┌─────────────────────┐
-             │      Django REST API      │
-             │            DRF            │
+             │    Django REST API  │
+             │        DRF          │
              └──────────┬──────────┘
-                           │
+                        │
               ┌─────────┴─────────┐
-              │                         │
-              ▼                         ▼
+              │                   │
+              ▼                   ▼
        ┌─────────────┐     ┌─────────────┐
-       │    SQLite       │     │      MySQL      │
-       │   User/Auth     │     │     Content     │
+       │    SQLite   │     │     MySQL   │
+       │   User/Auth │     │    Content  │
        └─────────────┘     └─────────────┘
-                            │
-                            ▼
+                        │
+                        ▼
                  ┌─────────────┐
-                 │     Judge0      │
-                 │   Code Runner   │
+                 │   Judge0    │
+                 │  Code Runner│
                  └─────────────┘
 🔑 API Areas
 
